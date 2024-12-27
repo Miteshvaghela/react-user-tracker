@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
-const UserForm = ({ title, saveUser }) => {
+const UserForm = ({ title, saveUser, updateUser, userData }) => {
+        
+   let initName = (userData.username)?userData?.username:'';
+   let initEmail = (userData.email)?userData?.email:'';
    
-   const [name, setName]   = useState('');
-   const [email, setEmail] = useState('');
+   const [name, setName]   = useState(initName);
+   const [email, setEmail] = useState(initEmail);
+
+   
+
    const handleSubmit = (e) => {
       e.preventDefault(); 
       const obj = {username : name, email : email};
+      obj.id = Math.floor(Math.random() * 10000000) + 1;
       if(name !== '' && email !== ''){
          saveUser(obj);
          setName('');
