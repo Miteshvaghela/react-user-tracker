@@ -12,8 +12,8 @@ let init = [
 const App = () => {
   const [users, setUsers] = useState(init);
   const [userData, setUserData] = useState({})
-  const [updateUser, setUpdateUser] = useState(false)
-  
+  const [onEditClick, setOnEditClick] = useState(false)
+
   const saveUser = (data) => {
     const addedUsers = [...users, data];
     setUsers(addedUsers)
@@ -28,7 +28,7 @@ const App = () => {
   }
 
   const editUser = (id) => {
-    setUpdateUser(true);
+    setOnEditClick(true);
     let obj = users.filter(item => item.id === id);
     setUserData(obj);
     console.log('Update user id : ', id)
@@ -39,7 +39,7 @@ const App = () => {
       <div className="container min-vh-100 mt-5">
         <div className="row">
           <UserList title={ 'Users' } users={users} deleteUser={deleteUser} editUser={editUser}/>
-          <UserForm title={'User Submission Form'} saveUser={saveUser} updateUser={updateUser} userData={userData}/>
+          <UserForm title={'User Submission Form'} saveUser={saveUser} onEditClick={onEditClick} userData={userData}/>
         </div>
       </div>
       <Footer copyText={'Copyright All rights reserved 2024'} />
